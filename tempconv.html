@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Gabarito', cursive;
+            background-color: rgb(216, 216, 221);
+        }
+
+        header {
+            background-color: rgb(72, 139, 161);
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            padding: 0 20px;
+        }
+
+        .left {
+            font-size: 2rem;
+        }
+
+        .right img {
+            width: 30px;
+            height: 30px;
+        }
+
+        .mainn {
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ccc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
+
+        input[type="text"] {
+            width: 300px;
+            height: 40px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        select {
+            width: 300px;
+            height: 40px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="left">Temperature Converter</div>
+            <div class="right">
+                <a href="tempconv.html"><img src="reload.png" alt="Reload" width="30" height="30"></a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="mainn" >
+        <div>
+            <label for="kelvin">Kelvin:</label>
+            <input type="text" id="kelvin" placeholder="Enter Kelvin temperature" oninput="convertFromKelvin()">
+        
+        
+            <label for="celsius">Celsius:</label>
+            <input type="text" id="celsius" placeholder="Enter Celsius temperature" oninput="convertFromCelsius()">
+        
+        
+            <label for="fahrenheit">Fahrenheit:</label>
+            <input type="text" id="fahrenheit" placeholder="Enter Fahrenheit temperature" oninput="convertFromFahrenheit()">
+        </div>
+    </main>
+
+    <script>
+        function convertFromKelvin() {
+            const kelvinInput = document.getElementById("kelvin").value;
+            const celsiusInput = document.getElementById("celsius");
+            const fahrenheitInput = document.getElementById("fahrenheit");
+
+            const kelvin = parseFloat(kelvinInput);
+            const celsius = isNaN(kelvin) ? 0 : kelvin - 273.15;
+            const fahrenheit = (celsius * 9/5) + 32;
+
+            celsiusInput.value = celsius.toFixed(2);
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+        }
+
+        function convertFromCelsius() {
+            const celsiusInput = document.getElementById("celsius").value;
+            const kelvinInput = document.getElementById("kelvin");
+            const fahrenheitInput = document.getElementById("fahrenheit");
+
+            const celsius = parseFloat(celsiusInput);
+            const kelvin = isNaN(celsius) ? 0 : celsius + 273.15;
+            const fahrenheit = (celsius * 9/5) + 32;
+
+            kelvinInput.value = kelvin.toFixed(2);
+            fahrenheitInput.value = fahrenheit.toFixed(2);
+        }
+
+        function convertFromFahrenheit() {
+            const fahrenheitInput = document.getElementById("fahrenheit").value;
+            const celsiusInput = document.getElementById("celsius");
+            const kelvinInput = document.getElementById("kelvin");
+
+            const fahrenheit = parseFloat(fahrenheitInput);
+            const celsius = isNaN(fahrenheit) ? 0 : (fahrenheit - 32) * 5/9;
+            const kelvin = isNaN(fahrenheit) ? 0 : celsius + 273.15;
+
+            celsiusInput.value = celsius.toFixed(2);
+            kelvinInput.value = kelvin.toFixed(2);
+        }
+    </script>
+</body>
+</html>
